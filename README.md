@@ -1,9 +1,10 @@
 Salt configuration for workstations
 ============
+[![Build Status](https://travis-ci.org/jacksoncage/salt-workstation.svg)](https://travis-ci.org/jacksoncage/salt-workstation)
 
 Salt configuration for configure and setup my current workstation. Optimized for my current setup which is a Thinkpad X220 running debian jessie.
 
-Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlabs salt tdd](http://blog.yourlabs.org/post/122381003283/test-driven-development-with-saltstack-sls-code).
+Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlabs salt formulas testing](http://blog.yourlabs.org/post/118987515453/testing-saltstack-formulas-on-travis-ci).
 
 ### Setup and apply
 

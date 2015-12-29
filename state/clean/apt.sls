@@ -2,13 +2,6 @@
 {%- set ns               = '/clean/' + name %}
 {%- set id               = grains['id'] %}
 
-{# TODO: Clean apt-get cache
-
-apt-get autoremove
-apt-get autoclean
-apt-get clean
-
-#}
 {{ ns }}/autoclean:
   cmd.run:
     - name: |
