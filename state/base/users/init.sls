@@ -46,6 +46,13 @@ include:
       - user: {{ username }}
   {% endif %}
 
+{{ ns }}/{{ username }}/home:
+  file.directory:
+    - name: /home/{{ username }}
+    - user: {{ username }}
+    - group: {{ username }}
+    - dir_mode: 755
+
 {{ ns }}/{{ username }}/permissions:
   file.managed:
     - name: /home/{{ username }}/.ssh/authorized_keys
