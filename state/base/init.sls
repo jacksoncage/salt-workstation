@@ -1,6 +1,7 @@
 {%- set name             = 'base' %}
 {%- set ns               = '/' + name %}
 
+{%- if grains['testingtravis'] is defined %}
 {# Setup apt source #}
 {{ ns }}/source/add:
   file.managed:
@@ -16,6 +17,7 @@
     - contents: Acquire::Languages "none";
     - makedirs: True
     - template: jinja
+{%- endif %}
 
 {# Install base packges #}
 {{ ns }}/installed:
@@ -92,7 +94,7 @@
       - zip
 
 {# Setup time, always use sweden time but not if we run tests via docker #}
-{%- if not grains['testing'] %}
+{%- if grains['prd'] is defined %}
 {{ ns }}/time:
   file.symlink:
     - name: /etc/localtime

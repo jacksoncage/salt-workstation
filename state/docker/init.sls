@@ -95,7 +95,7 @@ docker-service:
 
 
 {% if docker.install_docker_py %}
-{%- if not grains['testing'] %}
+{%- if grains['prd'] is defined %}
 docker-py requirements:
   pkg.installed:
     - name: python-pip

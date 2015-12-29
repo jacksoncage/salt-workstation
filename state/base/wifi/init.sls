@@ -9,7 +9,7 @@
       - firmware-iwlwifi
 
 {# make sure kernel module for wifi is loaded and persist #}
-{%- if not grains['testing'] %}
+{%- if grains['prd'] is defined %}
 {{ ns }}/:
   cmd.run:
     - name: |

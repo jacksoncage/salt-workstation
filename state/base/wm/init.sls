@@ -12,10 +12,12 @@
       - scrot
       - slim
 
+{%- if grains['osfinger'] == 'Debian-8' %}
 {{ ns }}/enabled:
   cmd.run:
     - name: systemctl enable i3lock
     - user: root
+{%- endif %}
 
 {{ ns }}/install/slim/minimal:
   git.latest:

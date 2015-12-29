@@ -13,6 +13,7 @@
     - dir_mode: 644
     - makedirs: True
 
+{%- if grains['osfinger'] == 'Debian-8' %}
 {# enable dbus for the user session #}
 {{ ns }}/dbus:
   cmd.run:
@@ -24,3 +25,4 @@
   cmd.run:
     - name: systemctl enable suspend-sedation.service
     - user: root
+{%- endif %}

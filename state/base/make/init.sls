@@ -8,6 +8,6 @@
       - make
       - gcc
       - build-essential
-      {%- if not grains['testing'] %}
+      {%- if grains['prd'] is defined %}
       - linux-headers-{{ kernelrelease }}
       {%- endif %}
