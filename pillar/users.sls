@@ -5,3 +5,4 @@ users:
     groups:
       - sudo
       - love
+      - docker
