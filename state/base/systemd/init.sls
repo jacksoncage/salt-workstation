@@ -14,11 +14,13 @@
     - makedirs: True
 
 {%- if grains['osfinger'] == 'Debian-8' %}
-{# enable dbus for the user session #}
+{# enable dbus for the user session
+  TODO: Fix dbus
 {{ ns }}/dbus:
   cmd.run:
     - name: systemctl --user enable dbus.socket
     - user: root
+#}
 
 {# suspend on closing the lid #}
 {{ ns }}/suspend:

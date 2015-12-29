@@ -1,6 +1,6 @@
-{% from "base/sudoers/package-map.jinja" import pkgs with context %}
-{%- set name             = 'base/sudoers' %}
-{%- set ns               = '/' + name %}
+{%- from "base/sudoers/package-map.jinja" import pkgs with context %}
+{%- set name             = 'sudoers' %}
+{%- set ns               = '/base/' + name %}
 {%- set id               = grains['id'] %}
 
 {{ ns }}/installed:
