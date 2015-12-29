@@ -9,9 +9,13 @@
       - firmware-iwlwifi
 
 {# make sure kernel module for wifi is loaded and persist #}
+{%- if not grains['testing'] %}
 {{ ns }}/:
-  kmod.present:
-    - name: iwlwifi
-    - persist: True
+  cmd.run:
+    - name: |
+        modprobe -r iwlwifi
+        modprobe iwlwifi
+    - user: root
     - require:
       - pkg: {{ ns }}/installed
+{%- endif %}

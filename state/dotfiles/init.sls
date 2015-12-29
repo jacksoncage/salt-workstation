@@ -11,4 +11,4 @@
     - group: {{ username }}
     - file_mode: 644
     - dir_mode: 644
-    - makedir: True
+    - makedirs: True

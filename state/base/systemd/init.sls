@@ -1,23 +1,23 @@
 {%- set name             = 'systemd' %}
 {%- set ns               = '/base/' + name %}
-{%- set username         = salt[]%}
+{%- set username         = salt['pillar.get']('username', 'love') %}
 
 {# create all systemd managed files #}
 {{ ns }}/add:
   file.recurse:
     - name: /etc/systemd
     - source: salt://base/systemd/files
-    - user: {{ username }}
-    - group: {{ username }}
+    - user: root
+    - group: root
     - file_mode: 644
     - dir_mode: 644
-    - makedir: True
+    - makedirs: True
 
 {# enable dbus for the user session #}
 {{ ns }}/dbus:
   cmd.run:
     - name: systemctl --user enable dbus.socket
-    - user: {{ username }}
+    - user: root
 
 {# suspend on closing the lid #}
 {{ ns }}/suspend:

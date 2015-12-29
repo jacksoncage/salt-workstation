@@ -47,7 +47,7 @@ salt-call --local state.sls base -l debug
 This command will apply highstate on localhost with the example pillar.
 
 ```
-salt-call state.highstate --local --retcode-passthrough --file-root=$(pwd)/state --pillar-root=$(pwd)/pillar
+salt-call state.highstate --local --retcode-passthrough --file-root=$(pwd)/state --pillar-root=$(pwd)/pillar -l debug
 ```
 
 #### inside a container

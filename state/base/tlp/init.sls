@@ -5,7 +5,7 @@
 {{ ns }}/package:
   pkgrepo.managed:
     - humanname: Advanced Linux Power Management
-    - name: repo.linrunner.de/debian
+    - name: deb http://repo.linrunner.de/debian jessie main
     - dist: jessie
     - file: /etc/apt/sources.list.d/tlp.list
     - keyid: CD4E8809

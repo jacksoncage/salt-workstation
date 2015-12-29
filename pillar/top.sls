@@ -1,5 +1,5 @@
 base:
   '*':
     - docker
-  'thinkpad':
+    - users
     - user

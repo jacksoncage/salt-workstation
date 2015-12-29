@@ -95,6 +95,7 @@ docker-service:
 
 
 {% if docker.install_docker_py %}
+{%- if not grains['testing'] %}
 docker-py requirements:
   pkg.installed:
     - name: python-pip
@@ -113,4 +114,5 @@ docker-py:
       - pkg: docker package
       - pip: docker-py requirements
     - reload_modules: True
+{%- endif %}
 {% endif %}

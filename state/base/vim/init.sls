@@ -8,4 +8,4 @@
 
 {{ ns }}/default:
   cmd.run:
-    - name: "update-alternatives --set editor /usr/bin/vim"
+    - name: "update-alternatives --set editor /usr/bin/vim.basic"

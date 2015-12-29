@@ -12,9 +12,10 @@
       - scrot
       - slim
 
-{{ ns }}/enable:
-  service.enable:
-    - name: i3lock
+{{ ns }}/enabled:
+  cmd.run:
+    - name: systemctl enable i3lock
+    - user: root
 
 {{ ns }}/install/slim/minimal:
   git.latest:
@@ -32,7 +33,7 @@
     - user: root
     - group: root
     - mode: 644
-    - makedir: True
+    - makedirs: True
     - require:
       - pkg: {{ ns }}/installed
 
@@ -44,7 +45,7 @@
     - user: root
     - group: root
     - mode: 644
-    - makedir: True
+    - makedirs: True
     - require:
       - pkg: {{ ns }}/installed
 
@@ -56,7 +57,7 @@
     - user: root
     - group: root
     - mode: 644
-    - makedir: True
+    - makedirs: True
     - require:
       - pkg: {{ ns }}/installed
 
@@ -68,7 +69,7 @@
     - user: root
     - group: root
     - mode: 644
-    - makedir: True
+    - makedirs: True
     - require:
       - pkg: {{ ns }}/installed
 

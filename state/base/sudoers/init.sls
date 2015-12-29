@@ -8,8 +8,7 @@
     - name: {{ pkgs.sudo }}
 
 {{ ns }}/group:
-    group:
-        - present
+    group.present:
         - name: sudo
 
 {{ ns }}/config:

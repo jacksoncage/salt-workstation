@@ -8,4 +8,6 @@
       - make
       - gcc
       - build-essential
+      {%- if not grains['testing'] %}
       - linux-headers-{{ kernelrelease }}
+      {%- endif %}

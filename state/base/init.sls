@@ -6,7 +6,7 @@
   file.managed:
     - name: /etc/apt/sources.list
     - source: salt://base/file/source.list
-    - makedir: True
+    - makedirs: True
     - template: jinja
 
 {# turn off translations, speed up apt-get update #}
@@ -14,7 +14,7 @@
   file.managed:
     - name: /etc/apt/apt.conf.d/99translations
     - contents: Acquire::Languages "none";
-    - makedir: True
+    - makedirs: True
     - template: jinja
 
 {# Install base packges #}
@@ -92,7 +92,7 @@
       - zip
 
 {# Setup time, always use sweden time but not if we run tests via docker #}
-{%- if grains['virtual_subtype'] != "Docker" %}
+{%- if not grains['testing'] %}
 {{ ns }}/time:
   file.symlink:
     - name: /etc/localtime
@@ -114,6 +114,8 @@ include:
   - .vim
   - .rsyslog
   - .tlp
+  - .fprint
   - .graphics
   - .wifi
   - .wm
+  - .systemd
