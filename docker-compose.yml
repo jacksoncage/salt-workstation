@@ -1,0 +1,9 @@
+thinkpad:
+  image: quay.io/jacksoncage/salt
+  environment:
+    SALT_USE: minion
+    SALT_NAME: thinkpad
+    SALT_GRAINS: "{'test': 'test'}"
+  hostname: thinkpad
+  volumes:
+    - ./:/srv/salt/:rw

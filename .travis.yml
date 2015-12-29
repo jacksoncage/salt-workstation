@@ -1,0 +1,34 @@
+language: python
+python:
+  - '2.7'
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - BS_PIP_ALLOWED=1
+    - BS_ECHO_DEBUG=1
+    - SALT_ARGS="-l debug --local --retcode-passthrough --pillar-root=$PWD/pillar --file-root=$PWD/state"
+
+before_install:
+  - sudo apt-get update
+  - curl -L http://bootstrap.saltstack.org | sudo -E sh -s -- stable
+
+install:
+  # See what kind of travis box you're on to help with making your states
+  # compatible with travis
+  - sudo salt-call grains.items --local
+
+script:
+  # For debugging purpose
+  - sudo salt-call state.show_highstate $SALT_ARGS
+
+  # Run highstate
+  - sudo salt-call state.highstate $SALT_ARGS
+
+  # Idempotence check
+  - sudo salt-call state.highstate $SALT_ARGS > /tmp/second
+  - cat /tmp/second
+  - bash -c '! grep -q "^Not Run:" /tmp/second'
