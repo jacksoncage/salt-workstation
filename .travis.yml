@@ -8,10 +8,6 @@ branches:
   only:
     - master
 
-git:
-    # Handle git submodules yourself
-    submodules: false
-
 env:
   global:
     - BS_PIP_ALLOWED=1
@@ -19,9 +15,6 @@ env:
     - SALT_ARGS="-l debug --local --retcode-passthrough --pillar-root=$PWD/pillar --file-root=$PWD/state"
 
 before_install:
-  # Use sed to replace the SSH URL with the public URL, then initialize submodules
-  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-  - git submodule update --init --recursive
   - sudo apt-get update
   - curl -L http://bootstrap.saltstack.org | sudo -E sh -s -- stable
 
