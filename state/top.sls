@@ -1,6 +1,6 @@
 base:
   '*':
     - base
-    - docker.docker
+    - docker
     - dotfiles
     - clean.apt

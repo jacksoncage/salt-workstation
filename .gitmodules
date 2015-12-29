@@ -1,3 +1,0 @@
-[submodule "state/docker"]
-	path = state/docker
-	url = git@github.com:saltstack-formulas/docker-formula.git
