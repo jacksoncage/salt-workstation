@@ -1,7 +1,7 @@
 {%- set name             = 'base' %}
 {%- set ns               = '/' + name %}
 
-{%- if grains['testingtravis'] is defined %}
+{%- if grains['testingtravis'] is defined %}{% else %}
 {# Setup apt source #}
 {{ ns }}/source/add:
   file.managed:
