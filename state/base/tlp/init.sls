@@ -2,6 +2,7 @@
 {%- set ns               = '/' + name %}
 {%- set id               = grains['id'] %}
 
+{%- if grains['testingtravis'] is defined %}{% else %}
 {{ ns }}/package:
   pkgrepo.managed:
     - humanname: Advanced Linux Power Management
@@ -16,3 +17,4 @@
     - pkgs:
       - tlp
       - tlp-rdw
+{%- endif %}

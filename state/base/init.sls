@@ -44,7 +44,6 @@
       - bridge-utils
       - bzip2
       - ca-certificates
-      - cgroupfs-mount
       - cmake
       - coreutils
       - curl
@@ -92,6 +91,9 @@
       - xcompmgr
       - xz-utils
       - zip
+      {%- if grains['testingtravis'] is defined %}{% else %}
+      - cgroupfs-mount
+      {%- endif %}
 
 {# Setup time, always use sweden time but not if we run tests via docker #}
 {%- if grains['prd'] is defined %}

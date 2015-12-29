@@ -1,6 +1,7 @@
 {%- set name             = 'wifi' %}
 {%- set ns               = '/base/' + name %}
 
+{%- if grains['testingtravis'] is defined %}{% else %}
 {# Install packges #}
 {{ ns }}/installed:
   pkg.latest:
@@ -18,4 +19,5 @@
     - user: root
     - require:
       - pkg: {{ ns }}/installed
+{%- endif %}
 {%- endif %}
