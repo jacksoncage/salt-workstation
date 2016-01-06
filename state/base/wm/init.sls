@@ -1,5 +1,6 @@
 {%- set name             = 'wm' %}
 {%- set ns               = '/base/' + name %}
+{%- set username         = salt['pillar.get']('username', 'love') %}
 
 {# Install packges #}
 {{ ns }}/installed:
@@ -19,13 +20,33 @@
     - user: root
 {%- endif %}
 
-{{ ns }}/install/slim/minimal:
+{{ ns }}/i3/configure:
+  file.managed:
+    - name: /home/{{ username }}/.i3/config
+    - source: salt://base/wm/files/i3.config
+    - user: {{ username }}
+    - group: {{ username }}
+    - mode: 644
+    - makedirs: True
+
+{{ ns }}/slim/install/minimal:
   git.latest:
     - name: https://github.com/naglis/slim-minimal.git
     - target: /usr/share/slim/themes/slim-minimal
     - identity: /home/love/.ssh/id_rsa
     - require:
       - pkg: {{ ns }}/installed
+
+{{ ns }}/slim/configure/minimal:
+  file.managed:
+    - name: /etc/slim.conf
+    - source: salt://base/wm/files/etc/slim.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+#    - require:
+#      - git: {{ ns }}/slim/install/minimal
 
 {# update clickpad settings #}
 {{ ns }}/clickpad:
