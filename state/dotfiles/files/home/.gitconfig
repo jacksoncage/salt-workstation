@@ -167,7 +167,7 @@
 [github]
   user = jacksoncage
 [commit]
-  gpgsign = true
+  gpgsign = false 
 [http]
   cookiefile = /home/love/.gitcookies
   postBuffer = 524288000
