@@ -74,7 +74,6 @@
       - mount
       - net-tools
       - nfs-common
-      - network-manager
       - openvpn
       - rxvt-unicode-256color
       - s3cmd

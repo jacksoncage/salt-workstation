@@ -8,6 +8,8 @@
     - pkgs:
       - iw
       - firmware-iwlwifi
+      - wicd-cli
+      - wicd-curses
 
 {# make sure kernel module for wifi is loaded and persist #}
 {%- if grains['prd'] is defined %}
@@ -21,3 +23,10 @@
       - pkg: {{ ns }}/installed
 {%- endif %}
 {%- endif %}
+
+{{ ns }}/wicd/running:
+  service.absent:
+    - name: network-manager
+  service.running:
+    - name: wicd
+
