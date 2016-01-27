@@ -24,9 +24,13 @@
 {%- endif %}
 {%- endif %}
 
-{{ ns }}/wicd/running:
-  service.absent:
+{{ ns }}/networkmanager/disabled:
+  service.disabled:
     - name: network-manager
+
+{{ ns }}/wicd/running:
   service.running:
     - name: wicd
+    - enable: True
+    - reload: True
 
