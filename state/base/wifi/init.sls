@@ -22,7 +22,6 @@
     - require:
       - pkg: {{ ns }}/installed
 {%- endif %}
-{%- endif %}
 
 {{ ns }}/networkmanager/disabled:
   service.disabled:
@@ -33,4 +32,5 @@
     - name: wicd
     - enable: True
     - reload: True
+{% endif %}
 
