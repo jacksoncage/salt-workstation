@@ -17,3 +17,6 @@ include:
   - .wifi
   - .wm
   - .systemd
+  - .dropbox
+  - .keepass
+
