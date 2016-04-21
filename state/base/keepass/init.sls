@@ -10,7 +10,7 @@
       - mono-complete
       - keepass2
 
-{{ ns }}/keepasshttp/download
+{{ ns }}/keepasshttp/download:
   file.managed:
     - name: /usr/lib/keepass2/KeePassHttp.plgx
     - source: https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
@@ -27,5 +27,3 @@
     - user: love
     - mode: 0755
     - makedirs: True
-
-
