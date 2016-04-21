@@ -16,7 +16,7 @@ env:
 
 before_install:
   - sudo apt-get update
-  - curl -L http://bootstrap.saltstack.org | sudo -E sh -s -- stable
+  - curl -L https://bootstrap.saltstack.com | sudo -E sh -s -- stable
 
 install:
   # See what kind of travis box you're on to help with making your states
