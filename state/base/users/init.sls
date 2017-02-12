@@ -6,7 +6,10 @@
 
 include:
   - base.sudoers
-  - docker
+
+{{ ns }}/group:
+    group.present:
+        - name: docker
 
 {% for username, details in pillar.get('users', {}).items() %}
 {{ ns }}/{{ username }}:

@@ -2,10 +2,40 @@
 {%- set ns               = '/' + name %}
 {%- set id               = grains['id'] %}
 
+{{ ns }}/repo:
+  pkgrepo.managed:
+    - humanname: Neovim
+    - name: deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu vivid main
+    - dist: precise
+    - file: /etc/apt/sources.list.d/logstash.list
+    - keyid: 55F96FCF8231B6DD
+    - keyserver: keyserver.ubuntu.com
+    - require_in:
+      - pkg: {{ ns }}/installed
+
 {{ ns }}/installed:
   pkg.latest:
-    - name: vim
+    - name: neovim
+    - refresh: True
 
-{{ ns }}/default:
-  cmd.run:
-    - name: "update-alternatives --set editor /usr/bin/vim.basic"
+{{ ns }}/alternatives/vi:
+  alternatives.install:
+    - name: vi
+    - link: /usr/bin/vi
+    - path: /usr/bin/nvim
+    - priority: 60
+
+{{ ns }}/alternatives/vim:
+  alternatives.install:
+    - name: vim
+    - link: /usr/bin/vim
+    - path: /usr/bin/nvim
+    - priority: 60
+
+{{ ns }}/alternatives/editor:
+  alternatives.install:
+    - name: editor
+    - link: /usr/bin/editor
+    - path: /usr/bin/nvim
+    - priority: 60
+

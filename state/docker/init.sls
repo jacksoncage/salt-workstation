@@ -1,93 +1,45 @@
-{% from "docker/map.jinja" import docker with context %}
-{% if docker.kernel is defined %}
-include:
-  - .kernel
-{% endif %}
+{%- set name = 'docker' %}
+{%- set ns = '/' + name %}
 
-docker package dependencies:
-  pkg.installed:
+{{ ns }}/install_deps:
+  pkg.latest:
     - pkgs:
-      - apt-transport-https
       - iptables
       - ca-certificates
-      - lxc
+      - apt-transport-https
       - python-apt
+      - python-pip
 
-purge old packages:
-  pkgrepo.absent:
-    - name: deb https://get.docker.com/ubuntu docker main
-  pkg.purged:
-    - name: lxc-docker*
-    - require_in:
-      - pkgrepo: docker package repository
-
-docker package repository:
+{{ ns }}/add_repo:
   pkgrepo.managed:
-    - name: deb https://apt.dockerproject.org/repo {{ grains["os"]|lower }}-{{ grains["oscodename"] }} main
-    - humanname: {{ grains["os"] }} {{ grains["oscodename"]|capitalize }} Docker Package Repository
-    - keyid: f76221572c52609d
-    - keyserver: keyserver.ubuntu.com
-    - file: /etc/apt/sources.list.d/docker.list
-    - refresh_db: True
-    - require_in:
-      - pkg: docker package
-    - require:
-      - pkg: docker package dependencies
+    - name: 'deb https://apt.dockerproject.org/repo debian-jessie main'
+    - file: '/etc/apt/sources.list.d/docker.list'
+    - keyid: 58118E89F3A912897C070ADBF76221572C52609D
+    - keyserver: hkp://p80.pool.sks-keyservers.net:80
 
-docker package:
-  {%- if "version" in docker %}
-  pkg.installed:
-    - name: docker-engine
-    - version: {{ docker.version }}
-  {%- else %}
+{{ ns }}/install:
   pkg.latest:
     - name: docker-engine
-  {%- endif %}
-    - refresh: {{ docker.refresh_repo }}
     - require:
-      - pkg: docker package dependencies
-      - pkgrepo: docker package repository
-      - file: docker-config
+      - pkg: install_deps
+      - pkgrepo: add_repo
 
-docker-config:
-  file.managed:
-    - name: /etc/default/docker
-    - source: salt://docker/files/config
-    - template: jinja
-    - mode: 644
-    - user: root
+{{ ns }}nstall_python_deps:
+  pip.installed:
+    - name: docker-py>=1.4.0
+    - require:
+      - pkg: install_deps
 
-docker-service:
+{{ ns }}/onroot_access:
+  cmd.run:
+    - name: |
+        groupadd docker
+        gpasswd -a love docker
+    - require:
+      - pkg: install
+
+{{ ns }}/running:
   service.running:
     - name: docker
-    - enable: True
-    - watch:
-      - file: /etc/default/docker
-      - pkg: docker package
-    {% if "process_signature" in docker %}
-    - sig: {{ docker.process_signature }}
-    {% endif %}
-
-
-{% if docker.install_docker_py %}
-{%- if grains['prd'] is defined %}
-docker-py requirements:
-  pkg.installed:
-    - name: python-pip
-  pip.installed:
-    - name: pip
-    - upgrade: True
-
-docker-py:
-  pip.installed:
-    {%- if "pip_version" in docker %}
-    - name: docker-py {{ docker.pip_version }}
-    {%- else %}
-    - name: docker-py
-    {%- endif %}
     - require:
-      - pkg: docker package
-      - pip: docker-py requirements
-    - reload_modules: True
-{%- endif %}
-{% endif %}
+      - pkg: install

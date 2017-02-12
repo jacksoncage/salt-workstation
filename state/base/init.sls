@@ -13,10 +13,7 @@ include:
   - .rsyslog
   - .tlp
   - .fprint
-  - .graphics
   - .wifi
-  - .wm
-  - .systemd
   - .dropbox
   - .keepass
 

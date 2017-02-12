@@ -14,8 +14,6 @@
       - network-manager-gnome
       - network-manager-openvpn-gnome
       - network-manager-vpnc-gnome
-      - network-manager-pptp
-      - network-manager-pptp-gonome
 
 {# make sure kernel module for wifi is loaded and persist #}
 {%- if grains['prd'] is defined %}
@@ -35,10 +33,5 @@
       - wicd-curses
       - wicd-cli
 
-#{{ ns }}/wicd/running:
-#  service.running:
-#    - name: wicd
-#    - enable: True
-#    - reload: True
 {% endif %}
 
