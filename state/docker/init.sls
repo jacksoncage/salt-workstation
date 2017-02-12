@@ -21,14 +21,14 @@
   pkg.latest:
     - name: docker-engine
     - require:
-      - pkg: install_deps
-      - pkgrepo: add_repo
+      - pkg: {{ ns }}/install_deps
+      - pkgrepo: {{ ns }}/add_repo
 
 {{ ns }}nstall_python_deps:
   pip.installed:
     - name: docker-py>=1.4.0
     - require:
-      - pkg: install_deps
+      - pkg: {{ ns }}/install_deps
 
 {{ ns }}/onroot_access:
   cmd.run:
@@ -36,10 +36,10 @@
         groupadd docker
         gpasswd -a love docker
     - require:
-      - pkg: install
+      - pkg: {{ ns }}/install
 
 {{ ns }}/running:
   service.running:
     - name: docker
     - require:
-      - pkg: install
+      - pkg: {{ ns }}/install
