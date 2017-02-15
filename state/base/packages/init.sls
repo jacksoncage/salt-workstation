@@ -1,24 +1,6 @@
 {%- set name             = 'packges' %}
 {%- set ns               = '/base/' + name %}
 
-{%- if grains['testingtravis'] is defined %}{% else %}
-{# Setup apt source #}
-{{ ns }}/source/add:
-  file.managed:
-    - name: /etc/apt/sources.list
-    - source: salt://base/file/source.list
-    - makedirs: True
-    - template: jinja
-
-{# turn off translations, speed up apt-get update #}
-{{ ns }}/source/apt.conf.d:
-  file.managed:
-    - name: /etc/apt/apt.conf.d/99translations
-    - contents: Acquire::Languages "none";
-    - makedirs: True
-    - template: jinja
-{%- endif %}
-
 {# Install base packges #}
 {{ ns }}/installed:
   pkg.latest:
@@ -90,6 +72,9 @@
       - xcompmgr
       - xz-utils
       - zip
+      - virtualbox
+      - vagrant
+      - rdesktop
       {%- if grains['testingtravis'] is defined %}{% else %}
       - cgroupfs-mount
       {%- endif %}

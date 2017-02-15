@@ -1,0 +1,4 @@
+deb     http://httpredir.debian.org/debian/ experimental main contrib non-free
+deb-src http://httpredir.debian.org/debian/ experimental main contrib non-free
+deb     http://ftp.se.debian.org/debian/    experimental main contrib non-free
+deb-src http://ftp.se.debian.org/debian/    experimental main contrib non-free

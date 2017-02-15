@@ -3,6 +3,7 @@
 
 {# Include base applications and it's configs #}
 include:
+  - .apt
   - .packages
   - .ntp
   - .make
@@ -16,4 +17,5 @@ include:
   - .wifi
   - .dropbox
   - .keepass
-
+  - .fswatch
+  - .node

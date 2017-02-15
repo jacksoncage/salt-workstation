@@ -14,6 +14,7 @@
       - network-manager-gnome
       - network-manager-openvpn-gnome
       - network-manager-vpnc-gnome
+#    - fromrepo: testing
 
 {# make sure kernel module for wifi is loaded and persist #}
 {%- if grains['prd'] is defined %}
