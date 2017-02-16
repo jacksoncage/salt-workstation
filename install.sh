@@ -12,4 +12,4 @@ echo "master: localhost \
 file_client: local" > /etc/salt/minion
 
 # Run a highstate
-salt-call state.highstate --local --retcode-passthrough --file-root=$(pwd)/state --pillar-root=$(pwd)/pillar -l debug
+salt-call state.apply --local --retcode-passthrough  --state-output=changes --file-root=$(pwd)/state --pillar-root=$(pwd)/pillar -l debug

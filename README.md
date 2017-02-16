@@ -8,14 +8,26 @@ Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlab
 
 ### Setup and apply
 
-#### 1. Install salt-minion
+#### Automatic
+
+Checkout this repo and run the included install script which will run all manual steps.
+
+```
+sudo ./install.sh
+```
+
+
+#### Manual
+
+
+##### 1. Install salt-minion
 
 ```
 curl -L https://bootstrap.saltstack.com -o install_salt.sh
 sudo sh install_salt.sh
 ```
 
-#### 2. Set salt to run masterless
+##### 2. Set salt to run masterless
 
 To instruct the minion to not look for a master, the file_client configuration option needs to be set in the minion configuration file.
 
