@@ -74,6 +74,7 @@
       - zip
       - virtualbox
       - vagrant
+      - screen
       - rdesktop
       {%- if grains['testingtravis'] is defined %}{% else %}
       - cgroupfs-mount

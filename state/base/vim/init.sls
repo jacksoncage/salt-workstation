@@ -6,8 +6,7 @@
   pkgrepo.managed:
     - humanname: Neovim
     - name: deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu vivid main
-    - dist: precise
-    - file: /etc/apt/sources.list.d/logstash.list
+    - file: /etc/apt/sources.list.d/neovim.list
     - keyid: 55F96FCF8231B6DD
     - keyserver: keyserver.ubuntu.com
     - require_in:
@@ -17,6 +16,7 @@
   pkg.latest:
     - name: neovim
     - refresh: True
+    - skip_verify: True
 
 {{ ns }}/alternatives/vi:
   alternatives.install:
