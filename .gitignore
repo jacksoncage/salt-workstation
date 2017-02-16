@@ -6,3 +6,4 @@ state/dotfiles/files/home/.dmenu_cache
 state/dotfiles/files/home/.bash_history
 state/dotfiles/files/home/.xsel.log
 state/dotfiles/files/home/.fehbg
+install_salt.sh
