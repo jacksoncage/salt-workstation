@@ -4,5 +4,5 @@ base:
     - docker
     - docker.compose
     - spotify
-#    - dotfiles
+    - dotfiles
     - clean.apt
