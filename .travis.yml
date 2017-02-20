@@ -36,3 +36,10 @@ script:
   - sudo salt-call state.highstate $SALT_ARGS --state-output=changes > /tmp/second
   - cat /tmp/second
   - bash -c '! grep -q "^Not Run:" /tmp/second'
+
+notifications:
+  email:
+    recipients:
+      - love.nyberg@lovemusic.se
+    on_success: never # default: change
+    on_failure: always # default: always

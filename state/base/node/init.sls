@@ -18,8 +18,9 @@
     - require:
       - pkgrepo: {{ ns }}/nodejs-ppa
 
-{{ ns }}/npm/pkgs:
-  npm.installed:
-    - pkgs:
-      - diff-so-fancy
-    - user: love
+{{ ns }}/npm/diff-so-fancy:
+  cmd.run:
+    - name: npm install diff-so-fancy
+    - runas: love
+    - cwd: /home/love
+    - unless: npm list|grep diff-so-fancy
