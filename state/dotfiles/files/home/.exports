@@ -4,8 +4,6 @@ export GMAIL=love.nyberg@lovemusic.se
 export GMAIL_NAME="Love Billingskog Nyberg"
 export GMAIL_FROM=love.nyberg@lovemusic.se
 
-# Make vim the default editor
-export EDITOR=/usr/bin/vim;
 #export TERMINAL="urxvt";
 
 # Larger bash history (allow 32³ entries; default is 500)

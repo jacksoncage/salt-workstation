@@ -18,3 +18,8 @@
     - require:
       - pkgrepo: {{ ns }}/nodejs-ppa
 
+{{ ns }}/npm/pkgs:
+  npm.installed:
+    - pkgs:
+      - diff-so-fancy
+    - user: love

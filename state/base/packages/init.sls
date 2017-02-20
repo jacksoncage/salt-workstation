@@ -7,6 +7,7 @@
     - install_recommends: False
     - pkgs:
       - htop
+      - bash-completion
       - dnstop
       - iotop
       - tmux
