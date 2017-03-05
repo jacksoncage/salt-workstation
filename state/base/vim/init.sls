@@ -1,6 +1,7 @@
-{%- set name             = 'base/vim' %}
-{%- set ns               = '/' + name %}
-{%- set id               = grains['id'] %}
+{%- set name = 'base/vim' %}
+{%- set ns = '/' + name %}
+{%- set id = grains['id'] %}
+{%- set username = salt['pillar.get']('username', 'love') %}
 
 {{ ns }}/repo:
   pkgrepo.managed:
@@ -39,3 +40,13 @@
     - path: /usr/bin/nvim
     - priority: 60
 
+{{ ns }}/plugin/path:
+  file.directory:
+    - name: /home/love/.vim/plugin
+    - user: love
+    - makedirs: True
+
+{{ ns }}/plugin-manager:
+  cmd.run:
+    - name: git clone https://github.com/Shougo/dein.vim /home/love/.vim/plugin/dein.vim
+    - creates: /home/love/.vim/plugin/dein.vim

@@ -4,7 +4,7 @@ Salt configuration for workstations
 
 Salt configuration for configure and setup my current workstation. Optimized for my current setup which is a Thinkpad X220 running debian jessie.
 
-Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlabs salt formulas testing](http://blog.yourlabs.org/post/118987515453/testing-saltstack-formulas-on-travis-ci).
+Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlabs salt formulas testing](http://blog.yourlabs.org/post/118987515453/testing-saltstack-formulas-on-travis-ci), dotfiles are influenced/copied from [Jessie Frazelle](https://github.com/jessfraz/dotfiles).
 
 ### Setup and apply
 
@@ -13,7 +13,8 @@ Influenced by [linux-salted](https://github.com/TTimo/linux-salted) and [yourlab
 Checkout this repo and run the included install script which will run all manual steps.
 
 ```
-sudo ./install.sh
+make install
+make apply
 ```
 
 

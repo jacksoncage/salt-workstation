@@ -2,11 +2,13 @@
 {%- set ns               = '/base/' + name %}
 
 {# Install base packges #}
-{{ ns }}/installed:
+{{ ns }}/installed/apt:
   pkg.latest:
     - install_recommends: False
     - pkgs:
       - htop
+      - pssh
+      - arp-scan
       - bash-completion
       - dnstop
       - iotop
@@ -80,6 +82,12 @@
       {%- if grains['testingtravis'] is defined %}{% else %}
       - cgroupfs-mount
       {%- endif %}
+
+{{ ns }}/installed/pip:
+  pip.installed:
+    - pkgs:
+      - gnupg
+
 
 {# Setup time, always use sweden time but not if we run tests via docker #}
 {%- if grains['prd'] is defined %}
