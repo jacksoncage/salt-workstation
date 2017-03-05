@@ -103,3 +103,19 @@ alias pubkey="more ~/.ssh/love_4096.pub | xclip -selection clipboard | echo '=> 
 
 # Pipe my private key to my clipboard.
 alias prikey="more ~/.ssh/love_4096 | xclip -selection clipboard | echo '=> Private key copied to pasteboard.'"
+
+
+alias home="cd ~" 
+
+# BL
+alias code-salt="cd ~/code/bloglovin/sys-salt" 
+alias vpn-work="sudo bash /home/love/vpn/work-vpn.sh"
+alias devbox="bash /home/love/code/bloglovin/devbox.sh"
+alias -- -="cd -"
+
+# git
+alias gti="git"
+alias gi="git"
+alias gtit="git"
+alias g="git"
+
